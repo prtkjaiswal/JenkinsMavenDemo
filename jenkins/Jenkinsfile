@@ -2,20 +2,9 @@ pipeline {
     agent any
     
     stages {
-        
-        stage('Initialize') {
-            steps {
-                export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-
-                export M2_HOME=/opt/maven
-
-                export MAVEN_HOME=/opt/maven
-            }
-        }
-        
         stage('Build') {
             steps {
-                
+                export MAVEN_HOME=/opt/maven
                 sh 'mvn -B -DskipTests clean package'
             }
         }

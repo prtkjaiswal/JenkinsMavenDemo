@@ -10,19 +10,14 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+        
+        stage('Deploy') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'In Deliver Stage'
+                echo 'In Deliver Stage.....'
+                sh 'cp target/mywebwar /opt/tomcat10/webapps/'
+                sh '/opt/tomcat10/bin/shutdown.sh'
+                sh '/opt/tomcat10/bin/starup.sh'
+                
             }
         }
     }

@@ -8,13 +8,14 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh 'mv target/*.war target/mywebapp.war'
             }
         }
         
         stage('Deploy') {
             steps {
                 echo 'In Deliver Stage.....'
-                sh 'cp target/mywebwar /opt/tomcat10/webapps/'
+                sh 'cp target/mywebapp.war /opt/tomcat10/webapps/'
                 sh '/opt/tomcat10/bin/shutdown.sh'
                 sh '/opt/tomcat10/bin/starup.sh'
                 

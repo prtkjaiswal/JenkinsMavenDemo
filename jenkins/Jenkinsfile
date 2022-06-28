@@ -17,7 +17,7 @@ pipeline {
                 echo 'In Deliver Stage.....'
                 sh 'cp target/mywebapp.war /opt/tomcat10/webapps/'
                 sh '/opt/tomcat10/bin/shutdown.sh'
-                sh '/opt/tomcat10/bin/starup.sh'
+                sh '/opt/tomcat10/bin/startup.sh'
                 
             }
         }
